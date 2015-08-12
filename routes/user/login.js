@@ -21,7 +21,7 @@ module.exports = function(passport)
                 }
                 req.session.user = user;
                 if (user.isDoctor) {
-                    return res.render('doctorprofile', {user: req.user, message: ""});
+                    return res.render('doctor_profile', {user: req.user, message: ""});
                 } else {
                     if (GLOBAL.token) {
                         patient.update({userID: user.user_id}, {

@@ -10,6 +10,7 @@ module.exports = function(passport) {
 
     // user routing
     router.use('/login',require('./user/login')(passport));
+    router.use('/register',require('./user/register'));
 
     // patient routing
     router.use('/profile',require('./patient/profile'));
@@ -18,6 +19,9 @@ module.exports = function(passport) {
     router.use('/search_doctor',require('./patient/search_doctor'));
 
     // doctor routing
+    router.use('/doctor_profile',require('./doctor/profile'));
+    router.use('/doctor_schedule',require('./doctor/schedule'));
+    router.use('/doctor_edit_details',require('./doctor/edit_details'));
 
     return router;
 };
