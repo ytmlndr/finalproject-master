@@ -1,0 +1,23 @@
+body {
+    padding-top: 50px;
+    word-wrap: break-word;
+}
+
+.panel-doctor {
+    margin: 0 auto;
+    width:95%;
+    margin-top: 5%;
+}
+
+.panel-heading {
+    font-size: large;
+    font-weight: bold;
+}
+
+td {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

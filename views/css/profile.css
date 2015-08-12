@@ -1,0 +1,34 @@
+body {
+    word-wrap: break-word;
+}
+
+#table-container{
+    margin: 0 auto;
+    width: 98%;
+}
+
+#sidebar-wrapper{
+    padding-top:-120px;
+}
+
+#menu-toggle {
+    display: inline;
+}
+
+@media (max-width: 768px) {
+    .disposable {
+        display: none;
+    }
+    .mobile{
+        display: inline-block;
+    }
+}
+
+@media (min-width: 769px) {
+    .disposable {
+        display: block;
+    }
+    .mobile{
+        display: none;
+    }
+}

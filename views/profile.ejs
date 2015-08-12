@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default nav-fixed-top disposable">
+    <div class="container-fluid">
+        <div class="navbar-head"><a class="navbar-brand">Welcome</a></div>
+        <div class="collapse navbar-collapse navbar-left" id="navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="/search_doctor">Schedule Appointment</a></li>
+                <li><a href="/cancel_app">Cancel Appointment</a></li>
+                <li><a href="/edit_details">Update Details</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="wrapper" class="mobile">
+    <!--side bar-->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="#">Start Bootstrap</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Shortcuts</a></li>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </div>
+
+    <div id="page-content-wrapper">
+     <!-- Mobile top menu bar-->
+        <nav class="navbar navbar-default mobile">
+            <div class="container-fluid mobile">
+                <span id="menu-toggle" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                <div class="navbar-head">Home</div>
+                <div class="collapse navbar-collapse navbar-left" id="navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+                        <li><a href="/search_doctor">Schedule Appointment</a></li>
+                        <li><a href="/cancel_app">Cancel Appointment</a></li>
+                        <li><a href="/edit_details">Update Details</a></li>
+                        <li><a href="/logout">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Appointments table -->
+        <div id='table-container' class="panel panel-default">
+            <div class="panel-heading">Next appointments</div>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                    </tr>
+                    <% if(appointments) {
+                    for(var i = 0; i < appointments.length; i++) {
+                    %>
+                    <tr>
+                        <td><%= appointments[i].doctorName %></td>
+                        <td><%= appointments[i].date.substr(0, 6) + appointments[i].date.substr(8, 2) %></td>
+                        <td><%= appointments[i].day.substr(0, 3) %></td>
+                        <td><%= appointments[i].realStartTime %></td>
+                    </tr>
+                    <% }
+                    } %>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+</body>
+</html>

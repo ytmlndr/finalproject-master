@@ -1,0 +1,52 @@
+module.exports = {
+
+    compare_appointments: function (a, b) {
+        if (a.date.split('/')[2] < b.date.split('/')[2])
+            return -1;
+        if (a.date.split('/')[2] > b.date.split('/')[2])
+            return 1;
+        if (a.date.split('/')[1] < b.date.split('/')[1])
+            return -1;
+        if (a.date.split('/')[1] > b.date.split('/')[1])
+            return 1;
+        if (a.date.split('/')[0] < b.date.split('/')[0])
+            return -1;
+        if (a.date.split('/')[0] > b.date.split('/')[0])
+            return 1;
+        if (a.realStartTime < b.realStartTime)
+            return -1;
+        else
+            return 1;
+    },
+
+    remove_old_appointments: function (appointment) {
+        var now = new Date();
+        var appointment_date = new Date();
+        now.addMinutes(180); //add for c9 GMT time
+        appointment_date.setYear(appointment.date.split('/')[2]);
+        appointment_date.setMonth(appointment.date.split('/')[1] - 1);
+        appointment_date.setDate(appointment.date.split('/')[0]);
+        appointment_date.setHours(appointment.realEndTime.split(':')[0]);
+        appointment_date.setMinutes(appointment.realEndTime.split(':')[1]);
+        if (now.isBefore(appointment_date))
+            return appointment;
+    },
+
+    getOldAppointments: function (apo) {
+        var now = new Date();
+        var apodate = new Date();
+
+        apodate.setYear(apo.date.split('/')[2]);
+        apodate.setMonth(apo.date.split('/')[1] - 1);
+        apodate.setDate(apo.date.split('/')[0]);
+        apodate.setHours(apo.realEndTime.split(':')[0]);
+        apodate.setMinutes(apo.realEndTime.split(':')[1]);
+        if (apodate.isBefore(now))
+            return apo;
+    },
+
+    diffInMinutesBetweenTwoHours: function (a, b) {
+        return (parseInt(a.split(":")[0]) * 60 + parseInt(a.split(":")[1])) - (parseInt(b.split(":")[0]) * 60 + parseInt(b.split(":")[1]));
+    }
+
+};
