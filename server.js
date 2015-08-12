@@ -10,6 +10,6 @@ app.use(router);
 app.set('port', (process.env.PORT || 3000));
 
 // start server
-    console.log('listening on port', server.address().port);
 app.listen(app.get('port'), function () {
+    console.log('listening on port', app.get('port'));
 });
