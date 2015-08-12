@@ -13,23 +13,6 @@ GLOBAL.token; //tokenID will be here
 
 module.exports = function (passport) {
 
-    app.get('/doctorprofile', ensureAuthenticated, function (req, res) {
-        res.render('doctorprofile', {user: req.user, message: ""});
-    });
-
-    app.get('/doctorSchedule', ensureAuthenticated, function (req, res) {
-        var query = Appointment.find({});
-        query.where('doctorID').equals(parseInt(req.session.user.user_id)).exec(function (err, appointments) {
-            appointments.sort(utils.compare_appointments);
-            var nextAppointments = appointments.filter(utils.remove_old_appointments);
-            res.render('doctorSchedule', {appointments: nextAppointments});
-        });
-    });
-
-    app.get('/register', function (req, res) {
-        res.render('register', {user: req.user});
-    });
-
     app.get('/doctoreditdetails', ensureAuthenticated, function (req, res) {
         res.render('doctoreditdetails', {user: req.user, message: ""});
     });
